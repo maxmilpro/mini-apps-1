@@ -1,0 +1,11 @@
+.board {
+}
+
+.square {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: solid;
+  text-align: center;
+  font-size: xx-large;
+}
