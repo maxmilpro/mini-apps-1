@@ -5,7 +5,8 @@ const port = 3000;
 
 app.use('/', express.static(path.join(__dirname, 'client')));
 
-app.get('/file', function(req, res) {
+app.post('/', function(req, res) {
+  console.log(req);
   res.send('getting the files for you');
 })
 
