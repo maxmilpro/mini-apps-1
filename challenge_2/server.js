@@ -1,13 +1,16 @@
 const path = require('path');
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const port = 3000;
 
+
+app.use(express.urlencoded({ extended: false}));
 app.use('/', express.static(path.join(__dirname, 'client')));
 
 app.post('/', function(req, res) {
-  console.log(req);
-  res.send('getting the files for you');
+  console.log(req.body['sales-data']);
+  res.end();
 })
 
 app.listen(port, () => {
