@@ -30,17 +30,3 @@ var convertJSONToString = function(obj, str) {
 
   return str;
 }
-
-/**
- * Inputs - JSON object containing nested objects
- * Outputs - csv file with formatted data
- * Constraints -
- * Edge Cases
- *
- *
- *
- *
- *
- */
-
- //
