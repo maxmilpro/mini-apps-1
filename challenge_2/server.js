@@ -11,9 +11,7 @@ app.use(express.urlencoded({ extended: false}));
 app.use('/', express.static(path.join(__dirname, 'client')));
 
 app.post('/', function(req, res) {
-  buildCSV(req.body['sales-data'], (err, result) => {
-    res.sendFile(result);
-  })
+  buildCSV(req, (err, result) => { res.sendFile(result) });
 })
 
 app.listen(port, () => {
