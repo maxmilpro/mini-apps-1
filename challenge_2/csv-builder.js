@@ -10,9 +10,9 @@ var convertJSONToString = function(obj, str) {
   str = str || `firstName,lastName,county,city,role,sales/n`;
   str += `${obj.firstName},${obj.lastName},${obj.county},${obj.city},${obj.role},${obj.sales}/n`;
 
-  if (obj.children) {
+  if (obj.children.length !== 0) {
     for (var i = 0; i < obj.children.length; i++) {
-      return convertJSONToString(obj.children[i], str);
+      str = convertJSONToString(obj.children[i], str);
     }
   }
 
