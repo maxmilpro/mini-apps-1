@@ -5,13 +5,6 @@ const multiparty = require('multiparty');
 var form = new multiparty.Form();
 
 module.exports = function(data, callback) {
-  // console.log(data);
-  // var parsed = JSON.parse(data);
-  // var converted = convertJSONToString(parsed);
-  // fs.writeFile(path.join(__dirname, 'test.csv'), converted, function(err, result) {
-  //   if (err) {console.log('could not write the file')};
-  //   callback(null, path.join(__dirname, 'test.csv'));
-  // })
   form.parse(data, (err, fields, files) => {
     fs.readFile(files['sales-data'][0].path, (err, data) => {
       var string = data.toString();
