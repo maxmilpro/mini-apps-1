@@ -12,9 +12,8 @@ app.use('/', express.static(path.join(__dirname, 'client')));
 
 app.post('/', function(req, res) {
   // console.log(req.body['sales-data']);
-  res.end();
   buildCSV(req.body['sales-data'], (err, result) => {
-
+    res.send(result);
   })
 })
 

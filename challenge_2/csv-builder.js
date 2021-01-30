@@ -1,9 +1,9 @@
-
+const fs = require('fs');
 
 module.exports = function(data, callback) {
   var parsed = JSON.parse(data);
   var converted = convertJSONToString(parsed);
-  console.log(converted);
+  callback(null, converted);
 }
 
 var convertJSONToString = function(obj, str) {
