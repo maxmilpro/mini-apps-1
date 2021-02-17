@@ -1,13 +1,17 @@
 const path = require('path');
+const cors = require('cors');
 const db = require('./database/index.js');
 const express = require('express');
 const app = express();
 const port = 3000;
 
+app.use(cors());
+app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // POST /checkout
-app.post('/checkout', function(req, res) {
+app.get('/checkout', function(req, res) {
+  console.log('creating a new record')
   db.insert()
   .then((result) => {
     res.send(result);
@@ -15,8 +19,12 @@ app.post('/checkout', function(req, res) {
 });
 
 // POST /account
-app.post('/account', function(req, res) {
-
+app.post('/checkout', function(req, res) {
+  console.log('updating a record')
+  db.update(req.body)
+  .then(() => {
+    res.end()
+  });
 });
 
 // POST /address
