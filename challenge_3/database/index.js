@@ -33,6 +33,9 @@ const purchaseSchema = new mongoose.Schema({
     zipCode: String
   },
   complete: Boolean
+},
+{
+  versionKey: false
 });
 
 // compile schema into model

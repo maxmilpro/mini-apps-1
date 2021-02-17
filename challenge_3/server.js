@@ -1,4 +1,5 @@
 const path = require('path');
+const db = require('./database/index.js');
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -7,7 +8,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // POST /checkout
 app.post('/checkout', function(req, res) {
-
+  db.insert()
+  .then((result) => {
+    res.send(result);
+  })
 });
 
 // POST /account

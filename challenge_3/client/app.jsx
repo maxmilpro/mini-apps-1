@@ -1,8 +1,9 @@
 // const React = require('react');
+// import $ from 'jquery';
 
 const Home = function(props) {
   return (
-    <div>Checkout</div>
+    <button onClick={props.handleSubmit}>Checkout</button>
   )
 }
 
@@ -34,7 +35,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recordId: null,
+      _id: null,
       name: null,
       email: null,
       password: null,
@@ -53,11 +54,19 @@ class App extends React.Component {
         zipCode: null
       },
       complete: false,
-    }
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+    $.post('http://localhost:3000/checkout', (id) => {
+      console.log(id);
+      this.setState(id)
+    })
   }
   render() {
-    if (this.state.recordId === null) {
-      return <Home/>
+    if (this.state._id === null) {
+      return <Home handleSubmit={this.handleSubmit}/>
     } else if (this.state.name === null) {
       return <CreateAccount/>
     } else if (this.state.address.line1 === null) {
