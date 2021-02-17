@@ -38,12 +38,12 @@ const purchaseSchema = new mongoose.Schema({
 // compile schema into model
 const Purchase = mongoose.model('Purchase', purchaseSchema);
 
-const example = new Purchase();
-example.save();
-
 // insert record
+const insert = async function() {
+  var newPurchase = new Purchase();
+  var result = await newPurchase.save();
+  return result;
+}
 
 // update record
-
-
 
