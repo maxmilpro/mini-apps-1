@@ -46,4 +46,29 @@ const insert = async function() {
 }
 
 // update record
+const update = async function(purchase) {
+  const conditions = {
+    _id: purchase._id
+  }
+  console.log('set the conditions: ', conditions);
 
+  let update = {};
+  for (key in purchase) {
+    if (key !== '_id') {
+      update[key] = purchase[key]
+    }
+  }
+  console.log('set the update: ', update);
+
+  await Purchase.findOneAndUpdate(conditions, update, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('We updated the record!')
+      return result;
+    }
+  })
+}
+
+module.exports.insert = insert;
+module.exports.update = update;
