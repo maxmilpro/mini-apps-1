@@ -42,7 +42,7 @@ const CreateAccount = function(props) {
               onChange={props.handleInputChange} />
           </label>
         </div>
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Next"/>
       </form>
     </div>
   )
@@ -103,7 +103,17 @@ const ShippingAddress = function(props) {
               onChange={props.handleInputChange} />
           </label>
         </div>
-        <input type="submit" value="Submit"/>
+        <div>
+          <label>
+            Phone Number:
+            <input
+              name="phoneNumber"
+              type="text"
+              value={props.phoneNumber}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <input type="submit" value="Next"/>
       </form>
     </div>
   )
@@ -111,7 +121,52 @@ const ShippingAddress = function(props) {
 
 const Payment = function(props) {
   return (
-    <div>Payment</div>
+    <div>
+      <div>Payment</div>
+      <form onSubmit={props.handleUpdate}>
+        <div>
+          <label>
+            Credit Card #:
+            <input
+              name="cc"
+              type="text"
+              value={props.cc}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Exipration Date:
+            <input
+              name="expiryDate"
+              type="text"
+              value={props.expiryDate}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            CVV:
+            <input
+              name="cvv"
+              type="text"
+              value={props.cvv}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Billing Zip Code:
+            <input
+              name="billingZipCode"
+              type="text"
+              value={props.billingZipCode}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <input type="submit" value="Next"/>
+      </form>
+    </div>
   )
 }
 
@@ -158,7 +213,6 @@ class App extends React.Component {
   }
 
   handleUpdate(event) {
-    debugger;
     event.preventDefault();
     console.log(this.state);
     let data = this.state;
