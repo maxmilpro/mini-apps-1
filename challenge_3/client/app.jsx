@@ -10,7 +10,7 @@ const Home = function(props) {
 const CreateAccount = function(props) {
   return (
     <div>
-      <div>Create Account</div>
+      <h1>Create Account</h1>
       <form onSubmit={props.handleUpdate}>
         <div>
           <label>
@@ -51,7 +51,7 @@ const CreateAccount = function(props) {
 const ShippingAddress = function(props) {
   return (
     <div>
-      <div>Shipping Address</div>
+      <h1>Shipping Address</h1>
       <form onSubmit={props.handleUpdate}>
         <div>
           <label>
@@ -122,7 +122,7 @@ const ShippingAddress = function(props) {
 const Payment = function(props) {
   return (
     <div>
-      <div>Payment</div>
+      <h1>Payment</h1>
       <form onSubmit={props.handleUpdate}>
         <div>
           <label>
@@ -170,9 +170,34 @@ const Payment = function(props) {
   )
 }
 
-const Summary = function(props) {
+const Summary = function({purchase, handleUpdate}) {
   return (
-    <div>Summary</div>
+    <div>
+      <h1>Summary</h1>
+      <div>
+        <h2>Account Info</h2>
+        <div>Name: {purchase.name}</div>
+        <div>Email: {purchase.email}</div>
+        <div>Password: {purchase.password}</div>
+      </div>
+      <div>
+        <h2>Shipping Address</h2>
+        <div>Line 1: {purchase.line1}</div>
+        <div>Line 2: {purchase.line2}</div>
+        <div>City: {purchase.city}</div>
+        <div>State: {purchase.state}</div>
+        <div>Zip Code: {purchase.zipCode}</div>
+        <div>Phone Number: {purchase.phoneNumber}</div>
+      </div>
+      <div>
+        <h2>Payment</h2>
+        <div>Credit Card #: {purchase.cc}</div>
+        <div>Expiration Date: {purchase.expiryDate}</div>
+        <div>CVV: {purchase.cvv}</div>
+        <div>Billing Zip Code: {purchase.billingZipCode}</div>
+      </div>
+      <button onClick={handleUpdate}>Purchase</button>
+    </div>
   )
 }
 
@@ -197,6 +222,7 @@ class App extends React.Component {
       complete: false,
       currentPage: 0
     };
+    this.initialState = this.state;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -221,9 +247,13 @@ class App extends React.Component {
       console.log('currentPage: ', this.state.currentPage)
       var page = this.state.currentPage;
       page++;
-      this.setState({
-        currentPage: page
-      })
+      if (page < 5) {
+        this.setState({
+          currentPage: page
+        })
+      } else {
+        this.setState(this.initialState)
+      }
     })
   }
 
@@ -246,7 +276,7 @@ class App extends React.Component {
     } else if (this.state.currentPage === 3) {
       return <Payment handleInputChange={this.handleInputChange} handleUpdate={this.handleUpdate}/>
     } else if (this.state.currentPage === 4)  {
-      return <Summary/>
+      return <Summary purchase={this.state} handleUpdate={this.handleUpdate}/>
     }
   }
 }
