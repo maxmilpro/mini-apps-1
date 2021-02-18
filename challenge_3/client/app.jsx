@@ -9,40 +9,103 @@ const Home = function(props) {
 
 const CreateAccount = function(props) {
   return (
-    // <div>Create Account</div>
-    <form onSubmit={props.handleUpdate}>
-      <label>
-        Name:
-        <input
-          name="name"
-          type="text"
-          value={props.name}
-          onChange={props.handleInputChange} />
-      </label>
-      <label>
-        Email:
-        <input
-          name="email"
-          type="text"
-          value={props.email}
-          onChange={props.handleInputChange} />
-      </label>
-      <label>
-        Password:
-        <input
-          name="password"
-          type="text"
-          value={props.password}
-          onChange={props.handleInputChange} />
-      </label>
-      <input type="submit" value="Submit"/>
-    </form>
+    <div>
+      <div>Create Account</div>
+      <form onSubmit={props.handleUpdate}>
+        <div>
+          <label>
+            Name:
+            <input
+              name="name"
+              type="text"
+              value={props.name}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Email:
+            <input
+              name="email"
+              type="text"
+              value={props.email}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password:
+            <input
+              name="password"
+              type="text"
+              value={props.password}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <input type="submit" value="Submit"/>
+      </form>
+    </div>
   )
 }
 
 const ShippingAddress = function(props) {
   return (
-    <div>Shipping Address</div>
+    <div>
+      <div>Shipping Address</div>
+      <form onSubmit={props.handleUpdate}>
+        <div>
+          <label>
+            Line 1:
+            <input
+              name="line1"
+              type="text"
+              value={props.line1}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Line 2:
+            <input
+              name="line2"
+              type="text"
+              value={props.line2}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            City:
+            <input
+              name="city"
+              type="text"
+              value={props.city}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            State:
+            <input
+              name="state"
+              type="text"
+              value={props.state}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Zip Code:
+            <input
+              name="zipCode"
+              type="text"
+              value={props.zipCode}
+              onChange={props.handleInputChange} />
+          </label>
+        </div>
+        <input type="submit" value="Submit"/>
+      </form>
+    </div>
   )
 }
 
@@ -66,22 +129,18 @@ class App extends React.Component {
       name: null,
       email: null,
       password: null,
-      address: {
-        line1: null,
-        line2: null,
-        city: null,
-        state: null,
-        zipCode: null,
-        phoneNumber: null
-      },
-      billing: {
-        cc: null,
-        expiryDate: null,
-        cvv: null,
-        zipCode: null
-      },
+      line1: null,
+      line2: null,
+      city: null,
+      state: null,
+      zipCode: null,
+      phoneNumber: null,
+      cc: null,
+      expiryDate: null,
+      cvv: null,
+      billingZipCode: null,
       complete: false,
-      currentPage: 'home'
+      currentPage: 0
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -93,17 +152,24 @@ class App extends React.Component {
       console.log(id);
       this.setState(id)
       this.setState({
-        currentPage: 'name'
+        currentPage: 1
       })
     })
   }
 
   handleUpdate(event) {
+    debugger;
     event.preventDefault();
     console.log(this.state);
     let data = this.state;
     $.post('http://localhost:3000/checkout', data, () => {
       console.log('Sent updated data to the server');
+      console.log('currentPage: ', this.state.currentPage)
+      var page = this.state.currentPage;
+      page++;
+      this.setState({
+        currentPage: page
+      })
     })
   }
 
@@ -117,15 +183,15 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.currentPage === 'home') {
+    if (this.state.currentPage === 0) {
       return <Home handleSubmit={this.handleSubmit}/>
-    } else if (this.state.currentPage === 'name') {
+    } else if (this.state.currentPage === 1) {
       return <CreateAccount handleInputChange={this.handleInputChange} handleUpdate={this.handleUpdate}/>
-    } else if (this.state.address.line1 === null) {
-      return <ShippingAddress/>
-    } else if (this.state.billing.cc === null) {
-      return <Payment/>
-    } else {
+    } else if (this.state.currentPage === 2) {
+      return <ShippingAddress handleInputChange={this.handleInputChange} handleUpdate={this.handleUpdate}/>
+    } else if (this.state.currentPage === 3) {
+      return <Payment handleInputChange={this.handleInputChange} handleUpdate={this.handleUpdate}/>
+    } else if (this.state.currentPage === 4)  {
       return <Summary/>
     }
   }
