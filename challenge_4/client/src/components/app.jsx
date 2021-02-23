@@ -19,15 +19,20 @@ class App extends React.Component {
     this.makeMove = this.makeMove.bind(this);
   }
 
-  makeMove(e) {
+  makeMove(x, y, e) {
+    var boardCopy = this.state.board.slice();
     if (this.state.currentMove === 'red') {
+      boardCopy[y][x] = 'red';
       e.target.className += ' red';
       this.setState({
+        board: boardCopy,
         currentMove: 'black'
       })
     } else {
+      boardCopy[y][x] = 'black';
       e.target.className += ' black';
       this.setState({
+        board: boardCopy,
         currentMove: 'red'
       })
     }
