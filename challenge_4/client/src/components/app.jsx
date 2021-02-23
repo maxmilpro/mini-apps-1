@@ -37,6 +37,7 @@ class App extends React.Component {
       })
     }
     this.checkRows();
+    this.checkColumns();
   }
 
   checkForWinner() {
@@ -55,15 +56,42 @@ class App extends React.Component {
           counter = 1;
         }
         if (counter === 4) {
+          console.log('true')
           return true;
         }
       }
     }
+    console.log('false')
     return false;
   }
 
   checkColumns() {
-
+    let counter = 1;
+    var boardCopy = this.state.board.slice();
+    // iterate across the columns
+    for (var i = 0; i < 7; i++) {
+      // iterate down the current column
+      for (var j = 0; j < 5; j++) {
+        // if the current element is equal to the next element and the current element is not null
+        if (boardCopy[j][i] !== null && boardCopy[j][i] === boardCopy[j + 1][i]) {
+          // increase counter by 1
+          counter++;
+          // otherwise
+        } else {
+          // reset the counter
+          counter = 1;
+        }
+        // if the counter is 4
+        if (counter === 4) {
+          // return true
+          console.log('true');
+          return true;
+        }
+      }
+    }
+    // return false
+    console.log('false')
+    return false;
   }
 
   checkDiagnols() {
