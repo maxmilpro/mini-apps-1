@@ -36,6 +36,38 @@ class App extends React.Component {
         currentMove: 'red'
       })
     }
+    this.checkRows();
+  }
+
+  checkForWinner() {
+
+  }
+
+  checkRows() {
+    let counter = 1;
+    var boardCopy = this.state.board.slice();
+    for (var i = 0; i < boardCopy.length; i++) {
+      var currentRow = boardCopy[i];
+      for (var j = 0; j < currentRow.length; j++) {
+        if (currentRow[j] !== null && currentRow[j] === currentRow[j + 1]) {
+          counter++;
+        } else {
+          counter = 1;
+        }
+        if (counter === 4) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  checkColumns() {
+
+  }
+
+  checkDiagnols() {
+
   }
 
   render() {
