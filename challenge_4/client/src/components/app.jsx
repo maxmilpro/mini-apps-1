@@ -43,13 +43,23 @@ class App extends React.Component {
       <div>
         <h1>Connect Four</h1>
         <div>
-          <Square/>
+          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+        </div>
+        <div>
+          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+        </div>
+        <div>
+          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+        </div>
+        <div>
+          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+        </div>
+        <div>
+          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+        </div>
       </div>
     )
   }
