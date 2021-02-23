@@ -1,7 +1,8 @@
 import React from 'react';
+import $ from 'jquery';
 
-var Square = function(props) {
-  return <div class="square"></div>
+var Square = function({x, y, makeMove}) {
+  return <div className="square" onClick={makeMove}></div>
 }
 
 export default Square;

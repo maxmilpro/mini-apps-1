@@ -6,3 +6,11 @@
   display: inline-block;
   margin: 2px;
 }
+
+.red {
+  background-color: red;
+}
+
+.black {
+  background-color: black;
+}

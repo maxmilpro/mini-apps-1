@@ -1,18 +1,6 @@
 import React from 'react';
+import $ from 'jquery';
 import Square from './square.jsx';
-
-// var App = function(props) {
-//   return (
-//     <div>
-//       <h1>Connect Four</h1>
-//       <div>
-//         {for (var i = 0; i <= 7; i++) {
-//           return <Square/>
-//         }}
-//       </div>
-//     </div>
-//   )
-// }
 
 class App extends React.Component {
   constructor(props) {
@@ -25,40 +13,60 @@ class App extends React.Component {
         [null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null]
-      ]
+      ],
+      currentMove: 'red'
     }
+    this.makeMove = this.makeMove.bind(this);
   }
 
-  createBoard() {
-    var row = [];
-    for (var i = 0; i <= 7; i++) {
-      row.push(<Square/>);
+  makeMove(e) {
+    if (this.state.currentMove === 'red') {
+      e.target.className += ' red';
+      this.setState({
+        currentMove: 'black'
+      })
+    } else {
+      e.target.className += ' black';
+      this.setState({
+        currentMove: 'red'
+      })
     }
-
-    return row;
   }
 
   render() {
+    var row = [0, 1, 2, 3, 4, 5, 6];
     return (
       <div>
         <h1>Connect Four</h1>
         <div>
-          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+          {row.map((x) => {
+            return <Square x={x} y={0} makeMove={this.makeMove}/>
+          })}
         </div>
         <div>
-          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+          {row.map((x) => {
+            return <Square x={x} y={1} makeMove={this.makeMove}/>
+          })}
         </div>
         <div>
-          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+          {row.map((x) => {
+            return <Square x={x} y={2} makeMove={this.makeMove}/>
+          })}
         </div>
         <div>
-          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+          {row.map((x) => {
+            return <Square x={x} y={3} makeMove={this.makeMove}/>
+          })}
         </div>
         <div>
-          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+          {row.map((x) => {
+            return <Square x={x} y={4} makeMove={this.makeMove}/>
+          })}
         </div>
         <div>
-          <Square/><Square/><Square/><Square/><Square/><Square/><Square/>
+          {row.map((x) => {
+            return <Square x={x} y={5} makeMove={this.makeMove}/>
+          })}
         </div>
       </div>
     )
