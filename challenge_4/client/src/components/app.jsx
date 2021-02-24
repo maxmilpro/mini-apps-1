@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Square from './square.jsx';
-import {checkRows, checkColumns, checkDiagnols} from '../helpers.js';
+var helpers = require('../helpers.js');
 
 class App extends React.Component {
   constructor(props) {
@@ -37,8 +37,8 @@ class App extends React.Component {
         currentMove: 'red'
       })
     }
-    checkRows(this.state.board);
-    checkColumns(this.state.board);
+    helpers.checkRows(this.state.board);
+    helpers.checkColumns(this.state.board);
   }
 
   checkForWinner() {
