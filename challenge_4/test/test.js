@@ -56,7 +56,7 @@ describe('checkForWinner', function() {
     expect(helpers.checkColumns(board)).to.be.true;
   });
 
-  xit('should find a diagnol winner', function() {
+  it('should find a diagnol winner', function() {
     var board = [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
