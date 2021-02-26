@@ -65,7 +65,7 @@ describe('checkForWinner', function() {
       [null, null, 'red', null, null, null, null],
       [null, null, null, 'red', null, null, null]
     ];
-    expect(helpers.checkDiagnols(board)).to.be.true;
+    expect(helpers.checkDiagnols(board, 2, 0, 'red')).to.be.true;
 
     var board = [
       [null, null, null, null, null, null, null],
@@ -75,7 +75,7 @@ describe('checkForWinner', function() {
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null]
     ];
-    expect(helpers.checkDiagnols(board)).to.not.be.true;
+    expect(helpers.checkDiagnols(board, 0, 0, 0, 'red')).to.not.be.true;
   });
 
   it('should find a tie', function() {
@@ -89,7 +89,7 @@ describe('checkForWinner', function() {
     ];
     expect(helpers.checkRows(board)).to.not.be.true;
     expect(helpers.checkColumns(board)).to.not.be.true;
-    expect(helpers.checkDiagnols(board)).to.not.be.true;
+    expect(helpers.checkDiagnols(board, 0, 0, 'black')).to.not.be.true;
     expect(helpers.checkForTie(board)).to.be.true;
   })
 });

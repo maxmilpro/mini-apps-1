@@ -34,8 +34,15 @@ module.exports.checkColumns = (board) => {
   return false;
 }
 
-module.exports.checkDiagnols = (board) => {
+module.exports.checkDiagnols = (board, row, col, piece) => {
+  if (board[row][col] === piece && board[row + 1][col + 1] === piece && board[row + 2][col + 2] === piece && board[row + 3][col + 3] === piece) {
+    return true;
+  };
+  if (board[row][col] === piece && board[row + 1][col - 1] === piece && board[row + 2][col - 2] === piece && board[row + 3][col - 3] === piece) {
+    return true;
+  };
 
+  return false;
 }
 
 module.exports.checkForTie = (board) => {

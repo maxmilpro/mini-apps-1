@@ -37,8 +37,11 @@ class App extends React.Component {
         currentMove: 'red'
       })
     }
-    helpers.checkRows(this.state.board);
-    helpers.checkColumns(this.state.board);
+    if (helpers.checkRows(this.state.board) || helpers.checkColumns(this.state.board) || helpers.checkDiagnols(this.state.board, y, x, this.state.currentMove)) {
+      alert(`${this.state.currentMove} wins!`);
+    }
+
+
   }
 
   checkForWinner() {
